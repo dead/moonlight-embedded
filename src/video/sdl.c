@@ -21,7 +21,7 @@
 #include "../sdl.h"
 #include "ffmpeg.h"
 
-#include "limelight-common/Limelight.h"
+#include "src/Limelight.h"
 
 #include <SDL.h>
 #include <SDL_thread.h>

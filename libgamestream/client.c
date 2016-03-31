@@ -23,8 +23,6 @@
 #include "client.h"
 #include "errors.h"
 
-#include "limelight-common/Limelight.h"
-
 #include <sys/stat.h>
 #include <stdbool.h>
 #include <stdio.h>
@@ -356,14 +354,14 @@ int gs_pair(PSERVER_DATA server, char* pin) {
   else if ((ret = http_request(url, data)) != GS_OK)
     goto cleanup;
 
-  if ((ret = xml_search(data->memory, data->size, "paired", &result)) != GS_OK)
+/*  if ((ret = xml_search(data->memory, data->size, "paired", &result)) != GS_OK)
     goto cleanup;
 
   if (strcmp(result, "1") != 0) {
     gs_error = "Pairing failed";
     ret = GS_FAILED;
     goto cleanup;
-  }
+  }*/
 
   unsigned char salt_pin[20];
   unsigned char aes_key_hash[32];
@@ -393,7 +391,7 @@ int gs_pair(PSERVER_DATA server, char* pin) {
   if ((ret = http_request(url, data)) != GS_OK)
     goto cleanup;
 
-  free(result);
+/*  free(result);
   result = NULL;
   if ((ret = xml_search(data->memory, data->size, "paired", &result)) != GS_OK)
     goto cleanup;
@@ -403,8 +401,8 @@ int gs_pair(PSERVER_DATA server, char* pin) {
     ret = GS_FAILED;
     goto cleanup;
   }
-
-  free(result);
+  
+  free(result);*/
   result = NULL;
   if (xml_search(data->memory, data->size, "challengeresponse", &result) != GS_OK) {
     ret = GS_INVALID;
@@ -447,7 +445,7 @@ int gs_pair(PSERVER_DATA server, char* pin) {
   if ((ret = http_request(url, data)) != GS_OK)
     goto cleanup;
 
-  free(result);
+/*  free(result);
   result = NULL;
   if ((ret = xml_search(data->memory, data->size, "paired", &result)) != GS_OK)
     goto cleanup;
@@ -456,7 +454,7 @@ int gs_pair(PSERVER_DATA server, char* pin) {
     gs_error = "Pairing failed";
     ret = GS_FAILED;
     goto cleanup;
-  }
+  }*/
 
   free(result);
   result = NULL;
@@ -487,7 +485,7 @@ int gs_pair(PSERVER_DATA server, char* pin) {
   if ((ret = http_request(url, data)) != GS_OK)
     goto cleanup;
 
-  free(result);
+/*  free(result);
   result = NULL;
   if ((ret = xml_search(data->memory, data->size, "paired", &result)) != GS_OK)
     goto cleanup;
@@ -496,7 +494,7 @@ int gs_pair(PSERVER_DATA server, char* pin) {
     gs_error = "Pairing failed";
     ret = GS_FAILED;
     goto cleanup;
-  }
+  }*/
 
   uuid_generate_random(uuid);
   uuid_unparse(uuid, uuid_str);
@@ -504,7 +502,7 @@ int gs_pair(PSERVER_DATA server, char* pin) {
   if ((ret = http_request(url, data)) != GS_OK)
     goto cleanup;
 
-  free(result);
+/*  free(result);
   result = NULL;
   if ((ret = xml_search(data->memory, data->size, "paired", &result)) != GS_OK)
     goto cleanup;
@@ -513,7 +511,7 @@ int gs_pair(PSERVER_DATA server, char* pin) {
     gs_error = "Pairing failed";
     ret = GS_FAILED;
     goto cleanup;
-  }
+  }*/
 
   server->paired = true;
 
@@ -580,7 +578,7 @@ int gs_start_app(PSERVER_DATA server, STREAM_CONFIGURATION *config, int appId, b
 
   if ((ret = http_request(url, data)) == GS_OK)
     server->currentGame = appId;
-  else
+/*  else
     goto cleanup;
 
   if ((ret = xml_search(data->memory, data->size, "cancel", &result)) != GS_OK)
@@ -594,7 +592,7 @@ int gs_start_app(PSERVER_DATA server, STREAM_CONFIGURATION *config, int appId, b
   cleanup:
   if (result != NULL)
     free(result);
-
+*/
   http_free_data(data);
   return ret;
 }

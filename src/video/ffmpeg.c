@@ -23,7 +23,7 @@
 #include "ffmpeg_vdpau.h"
 #endif
 
-#include "limelight-common/Limelight.h"
+#include "src/Limelight.h"
 
 #include <stdlib.h>
 #include <libswscale/swscale.h>
